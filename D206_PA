@@ -13,7 +13,7 @@ pandas.isnull(rawdata).sum
 msno.matrix(rawdata)
 
 # Address redundant variables in Dataset.  Column 0 and Column 1 are the same.  Remove Column 0.
-rawdata.drop(rawdata.columns[0], axis=1, inplace=True
+rawdata.drop(rawdata.columns[0], axis=1, inplace=True)
 
 # Rename Item1 - Item8 with correct column names.
 rawdata.rename(columns = {'Item1' : 'Timely_Admission', 'Item2' : 'Timely_Treatment', 'Item3' : 'Timely_Visits' , 'Item4' : 'Reliability', 'Item5' : 'Options', 'Item6' : 'Hrs_Treat', 'Item7' : 'Courteous', 'Item8' : 'Active_Listening'}, inplace=True)
