@@ -1,1 +1,54 @@
+# Libraries used.
+import pandas
+import missingno as msno
+import matplotlib.pyplot as plot
+import scipy as stats
+import seaborn
 
+# upload the dataset.
+rawdata = pandas.read_csv('C:/Users/ericy/Documents/WGU/D206/data/medical_raw_data.csv')
+
+# analyze and graph data.
+pandas.isnull(rawdata).sum
+msno.matrix(rawdata)
+
+# Address redundant variables in Dataset.  Column 0 and Column 1 are the same.  Remove Column 0.
+rawdata.drop(rawdata.columns[0], axis=1, inplace=True
+
+# Rename Item1 - Item8 with correct column names.
+rawdata.rename(columns = {'Item1' : 'Timely_Admission', 'Item2' : 'Timely_Treatment', 'Item3' : 'Timely_Visits' , 'Item4' : 'Reliability', 'Item5' : 'Options', 'Item6' : 'Hrs_Treat', 'Item7' : 'Courteous', 'Item8' : 'Active_Listening'}, inplace=True)
+
+# Search for and address variables with null values.
+rawdata.isnull().sum()
+
+# The variable 'Income' is posiively skewed, therefore imputate median 
+plt.hist(rawdata['Income'])
+rawdata.isnull().sum()
+rawdata['Income'].fillna(rawdata['Children'].median(), inplace=True)
+plt.hist(rawdata['Income'])
+rawdata.isnull().sum()
+
+# 'Soft_drink'  is either yes, no, or NA.  NA (not applicable) will be deduced to mean no soft drinks were consumed.  Therefore replace NA with No.
+plt.hist(rawdata['Soft_drink'])
+rawdata['Soft_drink'] = rawdata['Soft_drink'].fillna(No)
+
+# 'Overweight' is 1 for yes, 0 for no, and NA.  NA (not applicable) will be deduced to mean not overweight.  Therefore replace NA with 0.
+plt.hist(rawdata['Overweight'])
+rawdata.isnull().sum()
+rawdata['Overweight'] = rawdata['Overweight'].fillna(0)
+plt.hist(rawdata['Overweight'])
+rawdata.isnull().sum()
+
+# 'Anxiety' is 1 for yes, 0 for no.  Replace NA with 0.
+plt.hist(rawdata['Anxiety'])
+rawdata.isnull().sum()
+rawdata['Anxiety'] = rawdata['Anxiety'].fillna(0)
+plt.hist(rawdata['Anxiety'])
+rawdata.isnull().sum()
+
+# For Age imputate NA data with Mean.
+plt.hist(rawdata['Age'])
+rawdata.isnumll().sum()
+rawdata['Age'].fillna(rawdata['Age'].mean(), inplace=True)
+plt.hist(rawdata['Age'])
+rawdata.isnulll().sum()
