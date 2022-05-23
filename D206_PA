@@ -18,6 +18,32 @@ rawdata.drop(rawdata.columns[0], axis=1, inplace=True)
 # Rename Item1 - Item8 with correct column names.
 rawdata.rename(columns = {'Item1' : 'Timely_Admission', 'Item2' : 'Timely_Treatment', 'Item3' : 'Timely_Visits' , 'Item4' : 'Reliability', 'Item5' : 'Options', 'Item6' : 'Hrs_Treat', 'Item7' : 'Courteous', 'Item8' : 'Active_Listening'}, inplace=True)
 
+#Check for NaN values
+pandas.isnull(rawdata).sum()
+
+#Variables with Null data: Children, Age, Income, Soft_drink, Overweight, Anxiety, Initial_days, 
+#Children Analysis and clean - replace NA with median
+
+# Replace variables with responses of 'Yes' and 'No' with '1' and '0' respectively
+rawdata['Soft_drink'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Asthma'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Reflux_esophagitis'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Allergic_rhinitis'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Anxiety'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['BackPain'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Hyperlipidemia'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Diabetes'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Arthritis'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Overweight'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['Stroke'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['HighBlood'].replace(('Yes','No'),(1,0), inplace=True)
+rawdata['ReAdmis'].replace(('Yes','No'),(1,0), inplace=True)
+
+# Replace Qualitative with Quantitative values for Comlication_risk, Initial_admin, and Area.
+rawdata['Initial_admin'].replace(('Emergency Admission', 'Elective Admission', 'Observation Admission'),(3,2,1), inplace=True)
+rawdata['Complication_risk'].replace(('High','Medium','Low'),(3,2,1), inplace=True)
+rawdata['Area'].replace(('Urban','Suburban','Rural'),(3,2,1), inplace=True)
+
 # Search for and address variables with null values.
 rawdata.isnull().sum()
 
